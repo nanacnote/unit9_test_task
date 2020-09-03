@@ -1,0 +1,134 @@
+* {
+  box-sizing: border-box;
+}
+*:focus {
+  outline: none;
+}
+
+.container {
+  /* border: solid 1px grey; */
+  display: flex;
+  font-weight: bold;
+  min-height: 100vh;
+  overflow: auto;
+}
+
+.left {
+  /* border: solid 1px grey; */
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 50px;
+  overflow: hidden;
+}
+.leftTop {
+  /* border: solid 1px grey; */
+}
+.leftBottom {
+  /* border: solid 1px grey; */
+}
+
+.middle {
+  /* border: solid 1px grey; */
+  width: 55%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 50px 75px;
+  overflow: hidden;
+}
+.middleHeader {
+  /* border: solid 1px grey; */
+  margin-bottom: 100px;
+}
+.middleBody {
+  /* border: solid 1px grey; */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  font-size: 3.5rem;
+  font-weight: 900;
+  cursor: pointer;
+}
+.middleBodyItems {
+  /* border: solid 1px grey; */
+}
+.middleBodyItems:hover {
+  /* border: solid 1px grey; */
+}
+
+.right {
+  /* border: solid 1px grey; */
+  width: 15%;
+  display: flex;
+  /* align-items: center; */
+  justify-content: flex-end;
+  padding: 50px 0;
+}
+.rightWrapper {
+  /* border: solid 1px grey; */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  overflow: hidden;
+}
+.rightMenuLinks {
+}
+.rightMenuLinksItem {
+  /* border: solid 1px grey; */
+  position: relative;
+  margin: 30px;
+}
+.rightLabelAndMenuWraper {
+  /* border: solid 1px grey; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 30px;
+}
+.rightMenuCircle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: solid 1px #fff;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 15px auto;
+}
+.rightMenuCircle:hover {
+  cursor: pointer;
+}
+
+.verticalText {
+  /* border: solid 1px grey; */
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+.verticalText:hover {
+  cursor: pointer;
+}
+.rightMenuLinksItemActive::before {
+  content: "";
+  position: absolute;
+  display: block;
+  left: 40px;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  height: 7.5px;
+  width: 7.5px;
+  background-color: white;
+  border-radius: 50%;
+}
+
+/* custom css properties called by json data items */
+.contactData {
+  font-size: 1.75rem;
+}

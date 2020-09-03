@@ -1,0 +1,118 @@
+{
+  "about": {
+    "name": "About",
+    "children": [
+      {
+        "id": "about",
+        "customClass": "",
+        "description": "Hello! \nI'm Owusu K \nFullstack Developer \n& Data Scientist",
+        "image": "about_barcode.png",
+        "imageHeight": "75",
+        "details": []
+      }
+    ]
+  },
+  "work": {
+    "name": "Work",
+    "children": [
+      {
+        "id": "work-01",
+        "customClass": "",
+        "description": "PepsiCo",
+        "image": "",
+        "imageHeight": "",
+        "details": ["preview"]
+      },
+      {
+        "id": "work-02",
+        "customClass": "",
+        "description": "Nike-Town",
+        "image": "",
+        "imageHeight": "",
+        "details": ["preview"]
+      }
+    ]
+  },
+  "services": {
+    "name": "Services",
+    "children": [
+      {
+        "id": "services-01",
+        "customClass": "",
+        "description": "HELIAS",
+        "image": "",
+        "imageHeight": "",
+        "details": ["User Experience", "Art Direction", "Web Design"]
+      },
+      {
+        "id": "services-02",
+        "customClass": "",
+        "description": "HOBOKEN YOGI",
+        "image": "",
+        "imageHeight": "",
+        "details": [
+          "Art Direction",
+          "Web Design",
+          "User Experience",
+          "Interactive",
+          "Brand Design"
+        ]
+      },
+      {
+        "id": "services-03",
+        "customClass": "",
+        "description": "BUZZWORTHY",
+        "image": "",
+        "imageHeight": "",
+        "details": [
+          "User Experience",
+          "Web Design",
+          "Interactive",
+          "Brand Design",
+          "Art Direction",
+          "Front-End",
+          "Brand Strategy"
+        ]
+      },
+      {
+        "id": "services-04",
+        "customClass": "",
+        "description": "GATTO",
+        "image": "",
+        "imageHeight": "",
+        "details": [
+          "Interactive",
+          "Brand Strategy",
+          "Brand Design",
+          "Front-End"
+        ]
+      },
+      {
+        "id": "services-05",
+        "customClass": "",
+        "description": "SNOOZE",
+        "image": "",
+        "imageHeight": "",
+        "details": [
+          "Interactive",
+          "Art Direction",
+          "User Experience",
+          "Brand Strategy"
+        ]
+      }
+    ]
+  },
+  "contact": {
+    "name": "Contact",
+    "children": [
+      {
+        "id": "contact",
+        "customClass": "contactData",
+        "description": "15 Main House \n123 Great Street \nAA2 2AB \nFairview \n\n(020) 1234 5678",
+        "image": "",
+        "imageHeight": "",
+        "details": ["map"]
+      }
+    ]
+  }
+}
