@@ -45,7 +45,7 @@
         "description": "HELIAS",
         "leftImage": "",
         "leftImageHeight": "",
-        "hoverImage": "about_barcode.png",
+        "hoverImage": "services_01_image.jpeg",
         "leftDetails": ["User Experience", "Art Direction", "Web Design"]
       },
       {
@@ -54,7 +54,7 @@
         "description": "HOBOKEN YOGI",
         "leftImage": "",
         "leftImageHeight": "",
-        "hoverImage": "about_barcode.png",
+        "hoverImage": "services_02_image.jpeg",
         "leftDetails": [
           "Art Direction",
           "Web Design",
@@ -69,7 +69,7 @@
         "description": "BUZZWORTHY",
         "leftImage": "",
         "leftImageHeight": "",
-        "hoverImage": "",
+        "hoverImage": "services_03_image.jpeg",
         "leftDetails": [
           "User Experience",
           "Web Design",
@@ -86,7 +86,7 @@
         "description": "GATTO",
         "leftImage": "",
         "leftImageHeight": "",
-        "hoverImage": "",
+        "hoverImage": "services_04_image.jpeg",
         "leftDetails": [
           "Interactive",
           "Brand Strategy",
@@ -100,7 +100,7 @@
         "description": "SNOOZE",
         "leftImage": "",
         "leftImageHeight": "",
-        "hoverImage": "",
+        "hoverImage": "services_05_image.jpeg",
         "leftDetails": [
           "Interactive",
           "Art Direction",

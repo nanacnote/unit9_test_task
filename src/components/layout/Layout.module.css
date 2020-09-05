@@ -60,7 +60,10 @@
 .middleBodyMultiItemsImage {
   /* border: solid 1px grey; */
   position: absolute;
-  opacity: 0.75;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.85;
   width: 175px;
   height: 125px;
   overflow: hidden;
