@@ -68,6 +68,7 @@ const Layout = (props) => {
     Object.values(props.data)[0].name
   );
   const [middleSelection, setMiddleSelection] = useState("about");
+  const [hoverImage, sethoverImage] = useState("");
 
   useEffect(() => {
     // add all menu active state logic inside this if and vice versa in the else
@@ -97,23 +98,25 @@ const Layout = (props) => {
             .filter((e) => e.name === rightSelection)[0]
             .children.filter((e) => e.id === middleSelection)
             .map((e) =>
-              e?.image ? (
-                <div key={e.image}>
+              e?.leftImage ? (
+                <div key={e.leftImage}>
                   <img
-                    src={"/images/" + e.image}
-                    alt={e.image}
+                    src={"/images/" + e.leftImage}
+                    alt={e.leftImage}
                     style={{
-                      height: e.imageHeight ? e.imageHeight + "px" : "100px",
+                      height: e.leftImageHeight
+                        ? e.leftImageHeight + "px"
+                        : "100px",
                     }}
                   />
-                  {e?.details.map((e) => (
+                  {e?.leftDetails.map((e) => (
                     <div key={e}>
                       <div>{e}</div>
                     </div>
                   ))}
                 </div>
               ) : (
-                e?.details.map((e) => (
+                e?.leftDetails.map((e) => (
                   <div key={e}>
                     <div>{e}</div>
                   </div>
@@ -129,31 +132,69 @@ const Layout = (props) => {
       <div className={cx(styles.middle)}>
         <div className={cx(styles.middleHeader)}>{rightSelection}</div>
         <div className={cx(styles.middleBody)}>
+          <div
+            className={cx(styles.middleBodyMultiItemsImage)}
+            dangerouslySetInnerHTML={{
+              __html: `<img src="/images/${hoverImage}" alt="${hoverImage}" style="width: 100%" />`,
+            }}
+          ></div>
           {Object.values(props.data)
             .filter((e) => e.name === rightSelection)[0]
             .children.map((e, i, arr) => (
               <div
                 className={
                   arr.length > 1
-                    ? cx(styles.middleBodyItems, styles[e.customClass])
-                    : cx(styles[e.customClass])
+                    ? cx(styles.middleBodyMultiItems, styles[e.customClass])
+                    : cx(styles.middleBodySingleItem, styles[e.customClass])
                 }
                 key={e.id}
                 dangerouslySetInnerHTML={{
                   __html: e.description.replace(/[\n]/gi, "<br/>"),
                 }}
                 data-id={e.id}
+                data-image-hover={e.hoverImage}
                 tabIndex={0}
-                onMouseEnter={(e) => {
-                  setMiddleSelection(e.currentTarget.getAttribute("data-id")); // sets the values to display in the left top and bottom sections based on values from data-id attribute of element hovered
-                  e.currentTarget.getAttribute("data-id").split("-").length >
-                    1 && translateLeftTopAndBottom.start("fromTo"); // starts animation of content and number cast to left section top and bottom respectively
+                onMouseMove={(e) => {
+                  let parentPosition = e.currentTarget.parentNode.getBoundingClientRect();
+                  let imageDimensions = [
+                    e.currentTarget.parentNode.firstChild.clientWidth / 2,
+                    e.currentTarget.parentNode.firstChild.clientHeight / 2,
+                  ];
+                  e.currentTarget.parentNode.firstChild.setAttribute(
+                    "style",
+                    "transform: translate3d(" +
+                      (e.clientX - parentPosition.left - imageDimensions[0]) +
+                      "px," +
+                      (e.clientY - parentPosition.top - imageDimensions[1]) +
+                      "px,0px)"
+                  );
                 }}
-                onMouseLeave={
-                  (e) =>
+                onMouseEnter={(e) => {
+                  let condition =
                     e.currentTarget.getAttribute("data-id").split("-").length >
-                      1 && translateLeftTopAndBottom.reverse() // reverses animation of content and number cast to left section top and bottom respectively
-                }
+                    1;
+                  setMiddleSelection(e.currentTarget.getAttribute("data-id")); // sets the values to display in the left top and bottom sections based on values from data-id attribute of element hovered
+                  condition &&
+                    sethoverImage(
+                      e.currentTarget.getAttribute("data-image-hover")
+                    );
+                  condition && translateLeftTopAndBottom.start("fromTo"); // starts animation of content and number cast to left section top and bottom
+                  condition &&
+                    e.currentTarget.parentNode.firstChild.setAttribute(
+                      "style",
+                      "visibility: visible"
+                    ); // add image div (first sibling) to view by setting it to transparent
+                }}
+                onMouseLeave={(e) => {
+                  let condition =
+                    e.currentTarget.getAttribute("data-id").split("-").length >
+                    1;
+                  condition && translateLeftTopAndBottom.reverse(); // reverses animation of content and number cast to left section top and bottom
+                  e.currentTarget.parentNode.firstChild.setAttribute(
+                    "style",
+                    "visibility: hidden; opacity: 0"
+                  ); // removes image div (first sibling) from view by setting it to transparent
+                }}
               ></div>
             ))}
         </div>

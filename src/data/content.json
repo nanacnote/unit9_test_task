@@ -1,56 +1,61 @@
 {
-  "about": {
+  "item-01": {
     "name": "About",
     "children": [
       {
         "id": "about",
         "customClass": "",
         "description": "Hello! \nI'm Owusu K \nFullstack Developer \n& Data Scientist",
-        "image": "about_barcode.png",
-        "imageHeight": "75",
-        "details": []
+        "leftImage": "about_barcode.png",
+        "leftImageHeight": "75",
+        "hoverImage": "",
+        "leftDetails": []
       }
     ]
   },
-  "work": {
+  "item-02": {
     "name": "Work",
     "children": [
       {
         "id": "work-01",
         "customClass": "",
         "description": "PepsiCo",
-        "image": "",
-        "imageHeight": "",
-        "details": ["preview"]
+        "leftImage": "pesico_image.png",
+        "leftImageHeight": "200",
+        "hoverImage": "",
+        "leftDetails": []
       },
       {
         "id": "work-02",
         "customClass": "",
         "description": "Nike-Town",
-        "image": "",
-        "imageHeight": "",
-        "details": ["preview"]
+        "leftImage": "nike_image.png",
+        "leftImageHeight": "200",
+        "hoverImage": "",
+        "leftDetails": []
       }
     ]
   },
-  "services": {
+  "item-03": {
     "name": "Services",
     "children": [
       {
         "id": "services-01",
         "customClass": "",
         "description": "HELIAS",
-        "image": "",
-        "imageHeight": "",
-        "details": ["User Experience", "Art Direction", "Web Design"]
+        "leftImage": "",
+        "leftImageHeight": "",
+        "hoverImage": "about_barcode.png",
+        "leftDetails": ["User Experience", "Art Direction", "Web Design"]
       },
       {
         "id": "services-02",
         "customClass": "",
         "description": "HOBOKEN YOGI",
-        "image": "",
-        "imageHeight": "",
-        "details": [
+        "leftImage": "",
+        "leftImageHeight": "",
+        "hoverImage": "about_barcode.png",
+        "leftDetails": [
           "Art Direction",
           "Web Design",
           "User Experience",
@@ -62,9 +67,10 @@
         "id": "services-03",
         "customClass": "",
         "description": "BUZZWORTHY",
-        "image": "",
-        "imageHeight": "",
-        "details": [
+        "leftImage": "",
+        "leftImageHeight": "",
+        "hoverImage": "",
+        "leftDetails": [
           "User Experience",
           "Web Design",
           "Interactive",
@@ -78,9 +84,10 @@
         "id": "services-04",
         "customClass": "",
         "description": "GATTO",
-        "image": "",
-        "imageHeight": "",
-        "details": [
+        "leftImage": "",
+        "leftImageHeight": "",
+        "hoverImage": "",
+        "leftDetails": [
           "Interactive",
           "Brand Strategy",
           "Brand Design",
@@ -91,9 +98,10 @@
         "id": "services-05",
         "customClass": "",
         "description": "SNOOZE",
-        "image": "",
-        "imageHeight": "",
-        "details": [
+        "leftImage": "",
+        "leftImageHeight": "",
+        "hoverImage": "",
+        "leftDetails": [
           "Interactive",
           "Art Direction",
           "User Experience",
@@ -102,16 +110,17 @@
       }
     ]
   },
-  "contact": {
+  "item-04": {
     "name": "Contact",
     "children": [
       {
         "id": "contact",
         "customClass": "contactData",
         "description": "15 Main House \n123 Great Street \nAA2 2AB \nFairview \n\n(020) 1234 5678",
-        "image": "",
-        "imageHeight": "",
-        "details": ["map"]
+        "leftImage": "",
+        "leftImageHeight": "",
+        "hoverImage": "",
+        "leftDetails": ["map"]
       }
     ]
   }
