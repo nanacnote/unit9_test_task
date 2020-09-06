@@ -36,6 +36,7 @@ In the unit9_test_task directory
 In the unit9_test_task directory
 
 - npm run build
+
   Bundle is available in the \***\*dist\*\*** folder
 
 ---
@@ -57,10 +58,9 @@ In the unit9_test_task directory
 - contains all images to bypass webpack loading when running in node
 - main HTML file to run for static builds
 - main CSS with global styles
-- contains or Javascript animation modules composed as classes
+- contains all Javascript animation modules composed as classes
 - contains all react components with an exports index file for easy ES6 importing
 - contain a JSON object which populate the App with all the text needed
-<<<<<<< HEAD
 
 The App is modularized to allow for easy maintenance.
 
@@ -145,5 +145,3 @@ infinite amounts of data can be passed to the app to display.
 ## Contact
 
 adjeibohyen@hotmail.co.uk
-=======
->>>>>>> 04af9f17fe9a205f41ac4b552627791c4ae23614
