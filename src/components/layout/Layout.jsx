@@ -3,6 +3,7 @@ import styles from "./Layout.module.css";
 import cx from "classnames";
 import { CgMenuGridO, CgEditUnmask } from "react-icons/cg";
 import { Spinner, BgColor, TranslateXY } from "../../animation";
+import hoverEffect from "hover-effect";
 
 const Layout = (props) => {
   // instantiate all animations with a useState Hook
@@ -68,7 +69,7 @@ const Layout = (props) => {
     Object.values(props.data)[0].name
   );
   const [middleSelection, setMiddleSelection] = useState("about");
-  const [hoverImage, sethoverImage] = useState("");
+  const [hoverImage, setHoverImage] = useState();
 
   useEffect(() => {
     // add all menu active state logic inside this if and vice versa in the else
@@ -132,12 +133,7 @@ const Layout = (props) => {
       <div className={cx(styles.middle)}>
         <div className={cx(styles.middleHeader)}>{rightSelection}</div>
         <div className={cx(styles.middleBody)}>
-          <div
-            className={cx(styles.middleBodyMultiItemsImage)}
-            dangerouslySetInnerHTML={{
-              __html: `<img src="/images/${hoverImage}" alt="${hoverImage}" style="width: 100%" />`,
-            }}
-          ></div>
+          <div className={cx(styles.middleBodyMultiItemsImage)}></div>
           {Object.values(props.data)
             .filter((e) => e.name === rightSelection)[0]
             .children.map((e, i, arr) => (
@@ -155,29 +151,54 @@ const Layout = (props) => {
                 data-image-hover={e.hoverImage}
                 tabIndex={0}
                 onMouseMove={(e) => {
+                  let condition =
+                    e.currentTarget.getAttribute("data-id").split("-").length >
+                    1;
                   let parentPosition = e.currentTarget.parentNode.getBoundingClientRect();
                   let imageDimensions = [
                     e.currentTarget.parentNode.firstChild.clientWidth / 2,
                     e.currentTarget.parentNode.firstChild.clientHeight / 2,
                   ];
-                  e.currentTarget.parentNode.firstChild.setAttribute(
-                    "style",
-                    "transform: translate3d(" +
-                      (e.clientX - parentPosition.left - imageDimensions[0]) +
-                      "px," +
-                      (e.clientY - parentPosition.top - imageDimensions[1]) +
-                      "px,0px)"
-                  );
+                  condition &&
+                    e.currentTarget.parentNode.firstChild.setAttribute(
+                      "style",
+                      "transform: translate3d(" +
+                        (e.clientX - parentPosition.left - imageDimensions[0]) +
+                        "px," +
+                        (e.clientY - parentPosition.top - imageDimensions[1]) +
+                        "px,0px)"
+                    ); // sets hover div xy coordinates to track mouse
+                  condition &
+                    (e.clientX - parentPosition.left >
+                      e.currentTarget.clientWidth - 25) && hoverImage.next();
                 }}
                 onMouseEnter={(e) => {
                   let condition =
                     e.currentTarget.getAttribute("data-id").split("-").length >
                     1;
+                  let target = document.querySelector(
+                    "." + cx(styles.middleBodyMultiItemsImage)
+                  );
                   setMiddleSelection(e.currentTarget.getAttribute("data-id")); // sets the values to display in the left top and bottom sections based on values from data-id attribute of element hovered
+                  target.innerHTML = ""; // clears hover image div of all html content
                   condition &&
-                    sethoverImage(
-                      e.currentTarget.getAttribute("data-image-hover")
-                    );
+                    setHoverImage(
+                      new hoverEffect({
+                        parent: target,
+                        intensity: 1,
+                        imagesRatio: 0.5,
+                        speedIn: 5,
+                        speedOut: 5,
+                        hover: false,
+                        image1:
+                          "/images/" +
+                          e.currentTarget.getAttribute("data-image-hover"),
+                        image2:
+                          "/images/" +
+                          e.currentTarget.getAttribute("data-image-hover"),
+                        displacementImage: "/images/displacement_image.jpg",
+                      })
+                    ); // appends hover image to div
                   condition && translateLeftTopAndBottom.start("fromTo"); // starts animation of content and number cast to left section top and bottom
                   condition &&
                     e.currentTarget.parentNode.firstChild.setAttribute(
