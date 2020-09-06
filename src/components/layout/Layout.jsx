@@ -18,15 +18,15 @@ import services_04_image from "../../../public/images/services_04_image.jpeg";
 import services_05_image from "../../../public/images/services_05_image.jpeg";
 import displacement_image from "../../../public/images/displacement_image.jpg";
 const images = {
-  about_barcode: about_barcode,
-  pesico_image: pesico_image,
-  nike_image: nike_image,
-  services_01_image: services_01_image,
-  services_02_image: services_02_image,
-  services_03_image: services_03_image,
-  services_04_image: services_04_image,
-  services_05_image: services_05_image,
-  displacement_image: displacement_image,
+  about_barcode: "." + about_barcode,
+  pesico_image: "." + pesico_image,
+  nike_image: "." + nike_image,
+  services_01_image: "." + services_01_image,
+  services_02_image: "." + services_02_image,
+  services_03_image: "." + services_03_image,
+  services_04_image: "." + services_04_image,
+  services_05_image: "." + services_05_image,
+  displacement_image: "." + displacement_image,
 };
 
 const Layout = (props) => {

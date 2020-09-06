@@ -130,6 +130,7 @@
   flex-direction: column;
   align-items: center;
   margin: 0 30px;
+  -webkit-margin: 0 30px;
 }
 .rightMenuCircle {
   display: flex;
@@ -140,6 +141,7 @@
   height: 40px;
   border-radius: 50%;
   margin: 15px auto;
+  -webkit-margin: 15px auto;
 }
 .rightMenuCircle:hover {
   cursor: pointer;
