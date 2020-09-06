@@ -60,6 +60,7 @@ In the unit9_test_task directory
 - contains or Javascript animation modules composed as classes
 - contains all react components with an exports index file for easy ES6 importing
 - contain a JSON object which populate the App with all the text needed
+<<<<<<< HEAD
 
 The App is modularized to allow for easy maintenance.
 
@@ -144,3 +145,5 @@ infinite amounts of data can be passed to the app to display.
 ## Contact
 
 adjeibohyen@hotmail.co.uk
+=======
+>>>>>>> 04af9f17fe9a205f41ac4b552627791c4ae23614
