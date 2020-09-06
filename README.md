@@ -42,6 +42,7 @@ In the unit9_test_task directory
 
 ## Architecture
 
+```
 +-- public
 | +-- images
 | +-- index.html
@@ -51,6 +52,7 @@ In the unit9_test_task directory
 | +-- animation
 | +-- components
 | +-- data
+```
 
 - contains all images to bypass webpack loading when running in node
 - main HTML file to run for static builds
