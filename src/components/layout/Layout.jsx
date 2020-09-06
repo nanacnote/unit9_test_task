@@ -1,9 +1,33 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import styles from "./Layout.module.css";
 import cx from "classnames";
 import { CgMenuGridO, CgEditUnmask } from "react-icons/cg";
 import { Spinner, BgColor, TranslateXY } from "../../animation";
 import hoverEffect from "hover-effect";
+
+// import all images into images object and reference them in the componet when needed
+// this allows for webpack to bundle the images when a static build is required
+import about_barcode from "../../../public/images/about_barcode.png";
+import pesico_image from "../../../public/images/pesico_image.png";
+import nike_image from "../../../public/images/nike_image.png";
+import services_01_image from "../../../public/images/services_01_image.jpeg";
+import services_02_image from "../../../public/images/services_02_image.jpeg";
+import services_03_image from "../../../public/images/services_03_image.jpeg";
+import services_04_image from "../../../public/images/services_04_image.jpeg";
+import services_05_image from "../../../public/images/services_05_image.jpeg";
+import displacement_image from "../../../public/images/displacement_image.jpg";
+const images = {
+  about_barcode: about_barcode,
+  pesico_image: pesico_image,
+  nike_image: nike_image,
+  services_01_image: services_01_image,
+  services_02_image: services_02_image,
+  services_03_image: services_03_image,
+  services_04_image: services_04_image,
+  services_05_image: services_05_image,
+  displacement_image: displacement_image,
+};
 
 const Layout = (props) => {
   // instantiate all animations with a useState Hook
@@ -122,7 +146,7 @@ const Layout = (props) => {
               e?.leftImage ? (
                 <div key={e.leftImage}>
                   <img
-                    src={"/images/" + e.leftImage}
+                    src={images[e.leftImage]}
                     alt={e.leftImage}
                     style={{
                       height: e.leftImageHeight
@@ -172,9 +196,9 @@ const Layout = (props) => {
                 data-image-hover={e.hoverImage}
                 tabIndex={0}
                 onMouseMove={(e) => {
-                  let condition =
-                    e.currentTarget.getAttribute("data-id").split("-").length >
-                    1; // returns true for multiple elements in middle body and false for single enlement
+                  let condition = e.currentTarget.getAttribute(
+                    "data-image-hover"
+                  ); // returns true for multiple elements with data-image-hover attribute in middle body and false for single enlement
                   let parentPosition = e.currentTarget.parentNode.getBoundingClientRect();
                   let imageDimensions = [
                     e.currentTarget.parentNode.firstChild.clientWidth / 2,
@@ -189,13 +213,18 @@ const Layout = (props) => {
                         (e.clientY - parentPosition.top - imageDimensions[1]) +
                         "px,0px)"
                     ); // sets hover div xy coordinates to track mouse
-                  condition &
-                    (e.clientX - parentPosition.left >
-                      e.currentTarget.clientWidth - 40) && hoverImage.next();
-                  condition & (e.clientX - parentPosition.left < 40) &&
+                  condition &&
+                    e.clientX - parentPosition.left >
+                      e.currentTarget.clientWidth - 40 &&
+                    hoverImage.next();
+                  condition &&
+                    e.clientX - parentPosition.left < 40 &&
                     hoverImage.previous();
                 }}
                 onMouseEnter={(e) => {
+                  let conditionImageAvailable = e.currentTarget.getAttribute(
+                    "data-image-hover"
+                  );
                   let condition =
                     e.currentTarget.getAttribute("data-id").split("-").length >
                     1; // returns true for multiple elements in middle body and false for single enlement
@@ -205,6 +234,7 @@ const Layout = (props) => {
                   setMiddleSelection(e.currentTarget.getAttribute("data-id")); // sets the values to display in the left top and bottom sections based on values from data-id attribute of element hovered
                   target.innerHTML = ""; // clears hover image div of all html content
                   condition &&
+                    conditionImageAvailable &&
                     setHoverImage(
                       new hoverEffect({
                         parent: target,
@@ -214,12 +244,14 @@ const Layout = (props) => {
                         speedOut: 5,
                         hover: false,
                         image1:
-                          "/images/" +
-                          e.currentTarget.getAttribute("data-image-hover"),
+                          images[
+                            e.currentTarget.getAttribute("data-image-hover")
+                          ],
                         image2:
-                          "/images/" +
-                          e.currentTarget.getAttribute("data-image-hover"),
-                        displacementImage: "/images/displacement_image.jpg",
+                          images[
+                            e.currentTarget.getAttribute("data-image-hover")
+                          ],
+                        displacementImage: images["displacement_image"],
                       })
                     ); // appends hover image to div
                   condition && translateLeftTopAndBottom.start("fromTo"); // starts animation of content and number cast to left section top and bottom
@@ -308,3 +340,7 @@ const Layout = (props) => {
   );
 };
 export default Layout;
+
+Layout.propTypes = {
+  data: PropTypes.object,
+};

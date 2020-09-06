@@ -6,7 +6,7 @@
         "id": "about",
         "customClass": "",
         "description": "Hello! \nI'm Owusu K \nFullstack Developer \n& Data Scientist",
-        "leftImage": "about_barcode.png",
+        "leftImage": "about_barcode",
         "leftImageHeight": "75",
         "hoverImage": "",
         "leftDetails": []
@@ -20,7 +20,7 @@
         "id": "work-01",
         "customClass": "",
         "description": "PepsiCo",
-        "leftImage": "pesico_image.png",
+        "leftImage": "pesico_image",
         "leftImageHeight": "200",
         "hoverImage": "",
         "leftDetails": []
@@ -29,7 +29,7 @@
         "id": "work-02",
         "customClass": "",
         "description": "Nike-Town",
-        "leftImage": "nike_image.png",
+        "leftImage": "nike_image",
         "leftImageHeight": "200",
         "hoverImage": "",
         "leftDetails": []
@@ -45,7 +45,7 @@
         "description": "HELIAS",
         "leftImage": "",
         "leftImageHeight": "",
-        "hoverImage": "services_01_image.jpeg",
+        "hoverImage": "services_01_image",
         "leftDetails": ["User Experience", "Art Direction", "Web Design"]
       },
       {
@@ -54,7 +54,7 @@
         "description": "HOBOKEN YOGI",
         "leftImage": "",
         "leftImageHeight": "",
-        "hoverImage": "services_02_image.jpeg",
+        "hoverImage": "services_02_image",
         "leftDetails": [
           "Art Direction",
           "Web Design",
@@ -69,7 +69,7 @@
         "description": "BUZZWORTHY",
         "leftImage": "",
         "leftImageHeight": "",
-        "hoverImage": "services_03_image.jpeg",
+        "hoverImage": "services_03_image",
         "leftDetails": [
           "User Experience",
           "Web Design",
@@ -86,7 +86,7 @@
         "description": "GATTO",
         "leftImage": "",
         "leftImageHeight": "",
-        "hoverImage": "services_04_image.jpeg",
+        "hoverImage": "services_04_image",
         "leftDetails": [
           "Interactive",
           "Brand Strategy",
@@ -100,7 +100,7 @@
         "description": "SNOOZE",
         "leftImage": "",
         "leftImageHeight": "",
-        "hoverImage": "services_05_image.jpeg",
+        "hoverImage": "services_05_image",
         "leftDetails": [
           "Interactive",
           "Art Direction",
