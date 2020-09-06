@@ -34,7 +34,7 @@ const Layout = (props) => {
       }
     )
   );
-  const [translateMiddleHeaderAndBody] = useState(
+  const [translateMiddleHeaderAndBodyLinksClick] = useState(
     new TranslateXY(
       {
         target: "." + cx(styles.middleHeader),
@@ -62,13 +62,29 @@ const Layout = (props) => {
       }
     )
   );
+  const [translateMiddleHeaderAndBodyIconClick] = useState(
+    new TranslateXY(
+      {
+        target: "." + cx(styles.middleHeader),
+        x: 50,
+        opacity: "0",
+      },
+      {
+        target: "." + cx(styles.middleBody),
+        y: 500,
+        opacity: "0",
+      }
+    )
+  );
 
   // instatiate other conditional with a useState hooks
   const [isOpen, setIsOpen] = useState(false);
   const [rightSelection, setRightSelection] = useState(
     Object.values(props.data)[0].name
   );
-  const [middleSelection, setMiddleSelection] = useState("about");
+  const [middleSelection, setMiddleSelection] = useState(
+    Object.values(props.data)[0].children[0].id
+  );
   const [hoverImage, setHoverImage] = useState();
 
   useEffect(() => {
@@ -79,14 +95,18 @@ const Layout = (props) => {
       translateRightMenuAndLinks.start(); //moves circle menu to top of page on active
       // other logic
       setRightSelection("Services");
+      translateMiddleHeaderAndBodyIconClick.start("fromTo"); // add slide-in from bottom animation to middle body text on open
     } else {
       // animations logic
       addBgColorRightMenu.reverse(); //changes circle menu background back to initial value on active
       translateRightMenuAndLinks.reverse(); //moves circle menu to bottom of page on inactive
-      // other logic
-      setRightSelection(Object.values(props.data)[0].name); // sets content to display on menu inactive to the fist link on the right
-      setMiddleSelection(Object.values(props.data)[0].children[0].id); // sets value to display in left top and bottom sections based on logic above
-      translateLeftTopAndBottom.start("fromTo"); // starts animation of content and number cast to left section top and bottom respectively
+      // async animation and element display logic
+      translateMiddleHeaderAndBodyIconClick.reverse(() => {
+        setRightSelection(Object.values(props.data)[0].name); // sets content to display on menu inactive to the fist link on the right
+        setMiddleSelection(Object.values(props.data)[0].children[0].id); // sets value to display in left top and bottom sections based on logic above
+        translateMiddleHeaderAndBodyLinksClick.start("fromTo");
+        translateLeftTopAndBottom.start("fromTo"); // reset animation of content and number cast to left section top and bottom respectively to default
+      }); // reverse slide-in from bottom animation previously applied to middle body text on open pass it a callback to reset normal middle body animation behaviour
     }
   }, [isOpen]);
 
@@ -117,16 +137,17 @@ const Layout = (props) => {
                   ))}
                 </div>
               ) : (
-                e?.leftDetails.map((e) => (
-                  <div key={e}>
-                    <div>{e}</div>
-                  </div>
-                ))
+                e?.leftDetails.map((e) => <div key={e}>{e}</div>)
               )
             )}
         </div>
         <div className={cx(styles.leftBottom)}>
-          {middleSelection.split("-")[1] || "01"}
+          {Object.values(props.data).filter((e) => e.name === rightSelection)[0]
+            .children.length > 1
+            ? middleSelection.split("-")[1] || (
+                <div style={{ color: "#515151" }}>00</div>
+              )
+            : "01"}
         </div>
       </div>
       {/* middle section of page */}
@@ -153,7 +174,7 @@ const Layout = (props) => {
                 onMouseMove={(e) => {
                   let condition =
                     e.currentTarget.getAttribute("data-id").split("-").length >
-                    1;
+                    1; // returns true for multiple elements in middle body and false for single enlement
                   let parentPosition = e.currentTarget.parentNode.getBoundingClientRect();
                   let imageDimensions = [
                     e.currentTarget.parentNode.firstChild.clientWidth / 2,
@@ -170,12 +191,14 @@ const Layout = (props) => {
                     ); // sets hover div xy coordinates to track mouse
                   condition &
                     (e.clientX - parentPosition.left >
-                      e.currentTarget.clientWidth - 25) && hoverImage.next();
+                      e.currentTarget.clientWidth - 40) && hoverImage.next();
+                  condition & (e.clientX - parentPosition.left < 40) &&
+                    hoverImage.previous();
                 }}
                 onMouseEnter={(e) => {
                   let condition =
                     e.currentTarget.getAttribute("data-id").split("-").length >
-                    1;
+                    1; // returns true for multiple elements in middle body and false for single enlement
                   let target = document.querySelector(
                     "." + cx(styles.middleBodyMultiItemsImage)
                   );
@@ -209,7 +232,7 @@ const Layout = (props) => {
                 onMouseLeave={(e) => {
                   let condition =
                     e.currentTarget.getAttribute("data-id").split("-").length >
-                    1;
+                    1; // returns true for multiple elements in middle body and false for single enlement
                   condition && translateLeftTopAndBottom.reverse(); // reverses animation of content and number cast to left section top and bottom
                   e.currentTarget.parentNode.firstChild.setAttribute(
                     "style",
@@ -235,10 +258,12 @@ const Layout = (props) => {
                       : null
                   )}
                   key={e.name}
-                  data-id-initial={e.children[0]?.id}
+                  data-id-initial={
+                    e.children.length > 1 ? "" : e.children[0].id
+                  }
                   tabIndex={0}
                   onClick={(e) => {
-                    translateMiddleHeaderAndBody.start("fromTo"); // animate the header and body of the middle section into view
+                    translateMiddleHeaderAndBodyLinksClick.start("fromTo"); // animate the header and body of the middle section into view
                     setRightSelection(e.currentTarget.textContent); // assign the selection innerText to the rightSelection State
                     setMiddleSelection(
                       e.currentTarget.getAttribute("data-id-initial")

@@ -23,8 +23,12 @@ export class BgColor {
 
   /**
    * apply this method to reverse an instance of the animation
+   * @param {Function} callback triggers call back on animation complete
    */
-  reverse() {
+  reverse(callback = null) {
+    if (this.inst && callback) {
+      this.inst.reverse().then(callback);
+    }
     if (this.inst) {
       this.inst.reverse();
     }
