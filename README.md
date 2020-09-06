@@ -52,9 +52,9 @@ In the unit9_test_task directory
 | +-- components
 | +-- data
 
-// contains all images to bypass webpack loading when running in node
-// main HTML file to run for static builds
-// main CSS with global styles
-// contains or Javascript animation modules composed as classes
-// contains all react components with an exports index file for easy ES6 importing
-// contain a JSON object which populate the App with all the text needed
+- contains all images to bypass webpack loading when running in node
+- main HTML file to run for static builds
+- main CSS with global styles
+- contains or Javascript animation modules composed as classes
+- contains all react components with an exports index file for easy ES6 importing
+- contain a JSON object which populate the App with all the text needed
