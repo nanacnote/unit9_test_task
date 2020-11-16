@@ -10,7 +10,7 @@ This is a React App configured and setup up manually \***\*NOT\*\*** using Creat
 
 ## Demo
 
-View Deployed Version:
+View Static Deployed Version:
 
 [Deployed with Github Pages](https://nanacnote.github.io/unit9_test_task)
 
